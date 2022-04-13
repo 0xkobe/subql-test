@@ -1,0 +1,38 @@
+specVersion: 0.3.0
+
+name: loop-nft-backend
+version: 0.0.1
+description: ""
+
+schema:
+  file: "./schema.graphql"
+
+network:
+  chainId: "columbus-5" # Terra network code
+  # endpoint: 'https://terra.stakesystems.io'
+  # endpoint: 'http://terra.dc.thechainhub.com:1317/'
+  endpoint: "https://terra-columbus-5.beta.api.onfinality.io"
+  dictionary: "https://api.subquery.network/sq/subquery/terra-columbus-5-dictionary"
+  # Optionally provide a mantlemint endpoint to further speed up processing
+  mantlemint: "https://mantlemint.terra-columbus-5.beta.api.onfinality.io:1320"
+
+dataSources:
+  - kind: terra/Runtime
+    startBlock: 7144089
+    mapping:
+      file: "./dist/index.js"
+      handlers:
+        - handler: handleEvent
+          kind: terra/EventHandler
+          filter:
+            type: transfer
+            messageFilter:
+              type: "/terra.wasm.v1beta1.MsgExecuteContract"
+              values:
+                contract: "terra1ku7q5qz6q384whtrcnxtzp66nhp3r69pwup8t6"
+        - handler: handleMessage
+          kind: terra/MessageHandler
+          filter:
+            type: "/terra.wasm.v1beta1.MsgExecuteContract"
+            values:
+              contract: "terra1ku7q5qz6q384whtrcnxtzp66nhp3r69pwup8t6"
