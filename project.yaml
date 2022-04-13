@@ -12,7 +12,7 @@ network:
   # endpoint: 'https://terra.stakesystems.io'
   # endpoint: 'http://terra.dc.thechainhub.com:1317/'
   endpoint: "https://terra-columbus-5.beta.api.onfinality.io"
-  dictionary: "https://api.subquery.network/sq/subquery/terra-columbus-5-dictionary"
+  # dictionary: "https://api.subquery.network/sq/subquery/terra-columbus-5-dictionary"
   # Optionally provide a mantlemint endpoint to further speed up processing
   mantlemint: "https://mantlemint.terra-columbus-5.beta.api.onfinality.io:1320"
 
